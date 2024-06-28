@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.Build.Traversal/3.3.0">
+  <ItemGroup Label="files" >
+     <SolutionFile Include="*.props" Folder="build" /> 
+     <SolutionFile Include="*.targets" Folder="build" /> 
+  </ItemGroup>
+  <ItemGroup Label="projects" >
+    <ProjectReference Include="SMBLibrary.Adapters\SMBLibrary.Adapters.csproj" Folder="" />
+    <ProjectReference Include="SMBLibrary.Tests\SMBLibrary.Tests.csproj" Folder="" />
+    <ProjectReference Include="SMBLibrary.Win32\SMBLibrary.Win32.csproj" Folder="" />
+    <ProjectReference Include="SMBLibrary\SMBLibrary.csproj" Folder="" />
+    <ProjectReference Include="SMBServer\SMBServer.csproj" Folder="" />
+    <ProjectReference Include="Utilities\Utilities.csproj" Folder="" />
+  </ItemGroup>
+</Project>

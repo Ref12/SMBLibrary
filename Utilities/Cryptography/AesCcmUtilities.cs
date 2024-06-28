@@ -13,7 +13,7 @@ namespace Utilities
     /// <summary>
     /// Implements the Counter with CBC-MAC (CCM) detailed in RFC 3610
     /// </summary>
-    public static class AesCcm
+    public static class AesCcmUtilities
     {
         private static byte[] CalculateMac(byte[] key, byte[] nonce, byte[] data, byte[] associatedData, int signatureLength)
         {

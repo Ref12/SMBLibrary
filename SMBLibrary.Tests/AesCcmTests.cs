@@ -28,7 +28,7 @@ namespace SMBLibrary.Tests
             byte[] expectedSignature = new byte[] { 0x17, 0xE8, 0xD1, 0x2C, 0xFD, 0xF9, 0x26, 0xE0 };
 
             byte[] calculatedSignature;
-            byte[] encrypted = AesCcm.Encrypt(key, nonce, data, associatedData, 8, out calculatedSignature);
+            byte[] encrypted = AesCcmUtilities.Encrypt(key, nonce, data, associatedData, 8, out calculatedSignature);
 
             Assert.IsTrue(ByteUtils.AreByteArraysEqual(expectedEncrypted, encrypted));
             Assert.IsTrue(ByteUtils.AreByteArraysEqual(expectedSignature, calculatedSignature));
@@ -50,7 +50,7 @@ namespace SMBLibrary.Tests
 
             byte[] expectedData = new byte[] { 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E };
 
-            byte[] data = AesCcm.DecryptAndAuthenticate(key, nonce, encryptedData, associatedData, signature);
+            byte[] data = AesCcmUtilities.DecryptAndAuthenticate(key, nonce, encryptedData, associatedData, signature);
 
             Assert.IsTrue(ByteUtils.AreByteArraysEqual(expectedData, data));
         }
@@ -88,7 +88,7 @@ namespace SMBLibrary.Tests
             byte[] expectedSignature = new byte[] { 0x81, 0xA2, 0x86, 0x53, 0x54, 0x15, 0x44, 0x5D, 0xAE, 0x39, 0x39, 0x21, 0xE4, 0x4F, 0xA4, 0x2E };
 
             byte[] calculatedSignature;
-            byte[] encrypted = AesCcm.Encrypt(key, nonce, data, associatedData, 16, out calculatedSignature);
+            byte[] encrypted = AesCcmUtilities.Encrypt(key, nonce, data, associatedData, 16, out calculatedSignature);
             Assert.IsTrue(ByteUtils.AreByteArraysEqual(expectedEncrypted, encrypted));
             Assert.IsTrue(ByteUtils.AreByteArraysEqual(expectedSignature, calculatedSignature));
         }
@@ -118,7 +118,7 @@ namespace SMBLibrary.Tests
                                                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                                                0x11, 0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-            byte[] data = AesCcm.DecryptAndAuthenticate(key, nonce, encyrptedData, associatedData, signature);
+            byte[] data = AesCcmUtilities.DecryptAndAuthenticate(key, nonce, encyrptedData, associatedData, signature);
             Assert.IsTrue(ByteUtils.AreByteArraysEqual(expectedData, data));
         }
     }
