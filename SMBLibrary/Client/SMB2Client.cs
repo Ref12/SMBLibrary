@@ -26,7 +26,7 @@ namespace SMBLibrary.Client
         public static readonly uint ClientMaxReadSize = 1048576;
         public static readonly uint ClientMaxWriteSize = 1048576;
         private static readonly ushort DesiredCredits = 16;
-        public static readonly int DefaultResponseTimeoutInMilliseconds = 5000;
+        public const int DefaultResponseTimeoutInMilliseconds = 5000;
 
         private string m_serverName;
         private SMBTransportType m_transport;
@@ -94,7 +94,7 @@ namespace SMBLibrary.Client
             return Connect(serverAddress, transport, port, responseTimeoutInMilliseconds);
         }
 
-        protected internal bool Connect(IPAddress serverAddress, SMBTransportType transport, int port, int responseTimeoutInMilliseconds)
+        public bool Connect(IPAddress serverAddress, SMBTransportType transport, int port, int responseTimeoutInMilliseconds = DefaultResponseTimeoutInMilliseconds)
         {
             if (m_serverName == null)
             {

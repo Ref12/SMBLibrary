@@ -19,8 +19,11 @@ namespace SMBLibrary.Server
 {
     public partial class SMBServer
     {
-        public static readonly int NetBiosOverTCPPort = 139;
-        public static readonly int DirectTCPPort = 445;
+        public const int NetBiosOverTCPPort = 139;
+        public const int DirectTCPPort = 445;
+
+        public ushort? OverridePort { get; set; }
+
         public const string NTLanManagerDialect = "NT LM 0.12";
         public static readonly bool EnableExtendedSecurity = true;
         private static readonly int InactivityMonitoringInterval = 30000; // Check every 30 seconds
@@ -80,7 +83,7 @@ namespace SMBLibrary.Server
         /// <exception cref="System.Net.Sockets.SocketException"></exception>
         public void Start(IPAddress serverAddress, SMBTransportType transport, bool enableSMB1, bool enableSMB2, bool enableSMB3, TimeSpan? connectionInactivityTimeout)
         {
-            int port = (transport == SMBTransportType.DirectTCPTransport ? DirectTCPPort : NetBiosOverTCPPort);
+            int port = OverridePort ?? (transport == SMBTransportType.DirectTCPTransport ? DirectTCPPort : NetBiosOverTCPPort);
             Start(serverAddress, transport, port, enableSMB1, enableSMB2, enableSMB3, connectionInactivityTimeout);
         }
 

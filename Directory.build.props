@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworkBase>net8.0</TargetFrameworkBase>
+    <TargetFramework>$(TargetFrameworkBase)</TargetFramework>
   </PropertyGroup>
 </Project>

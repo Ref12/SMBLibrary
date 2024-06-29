@@ -6,6 +6,7 @@
   <ItemGroup Label="projects" >
     <ProjectReference Include="SMBLibrary.Adapters\SMBLibrary.Adapters.csproj" Folder="" />
     <ProjectReference Include="SMBLibrary.Storage\SMBLibrary.Storage.csproj" Folder="" />
+    <ProjectReference Include="SMBLibrary.Console\SMBLibrary.Console.csproj" Folder="" />
     <ProjectReference Include="SMBLibrary.Tests\SMBLibrary.Tests.csproj" Folder="" />
     <ProjectReference Include="SMBLibrary.Win32\SMBLibrary.Win32.csproj" Folder="" />
     <ProjectReference Include="SMBLibrary\SMBLibrary.csproj" Folder="" />

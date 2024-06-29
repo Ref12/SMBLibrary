@@ -1,0 +1,13 @@
+
+netsh interface ipv4 add address "SMBServeVirtualIP" 192.168.1.123 255.255.255.0
+
+netsh interface portproxy add v4tov4 listenaddress=192.168.1.123 listenport=8080 connectaddress=127.0.0.1 connectport=11445
+
+
+
+netsh interface ipv4 add address "SMBServeVirtualIP" 127.0.0.10 255.0.0.0
+
+netsh interface portproxy add v4tov4 listenaddress=127.0.0.10 listenport=445 connectaddress=127.0.0.1 connectport=11445
+
+
+netsh interface portproxy add v4tov4 listenaddress=192.168.1.100 listenport=445 connectaddress=127.0.0.1 connectport=11445
