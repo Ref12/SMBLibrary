@@ -37,8 +37,14 @@ public static class Program
         address.Address = IPAddress.Parse("10.0.0.47");
         address.Address = IPAddress.Loopback;
         address.Address = IPAddress.Parse("192.168.176.1");
-        address.Address = IPAddress.Parse("6ca9:2520:8efe:4b42:bb51:6574:274d:cc73");
-        address.Port = 446;
+        address.Address = IPAddress.Parse("192.168.176.1");
+        address.Address = IPAddress.Parse("10.0.3.33");
+        //address.Address = IPAddress.Parse("6ca9:2520:8efe:4b42:bb51:6574:274d:cc73");
+        address.Port = 11445;
+        ushort? overridePort = 11445;
+        overridePort = null;
+        IPAddress serverAddress = null;
+        serverAddress = IPAddress.Any;
 
         //address = (IPAddress.Loopback, (int)server.OverridePort.Value);
 
@@ -50,12 +56,12 @@ public static class Program
         },
         gssProvider)
         {
-            OverridePort = address.Port
+            OverridePort = overridePort ?? address.Port
         };
 
         Console.WriteLine($"Starting SMB Server on {server.OverridePort}");
 
-        server.Start(address.Address, transport);
+        server.Start(serverAddress ?? address.Address, transport);
         //server.Start(IPAddress.Loopback, SMBTransportType.DirectTCPTransport);
 
         Console.WriteLine($"Started SMB Server. Press enter to exit...");
