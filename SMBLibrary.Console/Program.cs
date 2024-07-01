@@ -35,10 +35,10 @@ public static class Program
         address = (address.Address, port);
 
         address.Address = IPAddress.Parse("10.0.0.47");
-        address.Address = IPAddress.Loopback;
         address.Address = IPAddress.Parse("192.168.176.1");
         address.Address = IPAddress.Parse("192.168.176.1");
         address.Address = IPAddress.Parse("10.0.3.33");
+        address.Address = IPAddress.Loopback;
         //address.Address = IPAddress.Parse("6ca9:2520:8efe:4b42:bb51:6574:274d:cc73");
         address.Port = 11445;
         ushort? overridePort = 11445;
@@ -52,6 +52,8 @@ public static class Program
         {
 #if WINDOWS
             new FileSystemShare("Code", new NTDirectoryFileSystem(@"C:\Code"))
+#else
+            //new FileSystemShare("Code", new NTFileSystemAdapter()
 #endif
         },
         gssProvider)
