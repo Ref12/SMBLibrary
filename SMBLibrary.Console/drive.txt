@@ -1,0 +1,4 @@
+select vdisk file="S:\testdisk.vhdx"
+attach vdisk
+
+C:\Windows\System32\drivers\etc\hosts

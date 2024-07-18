@@ -20,10 +20,10 @@
     <ProjectReference Include="..\SMBLibrary\SMBLibrary.csproj" />
     <ProjectReference Include="..\SMBLibrary.Adapters\SMBLibrary.Adapters.csproj" />
     <ProjectReference Include="..\SMBLibrary.Storage\SMBLibrary.Storage.csproj" />
+    <ProjectReference Include="..\SMBLibrary.Win32\SMBLibrary.Win32.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == '$(TargetFrameworkBase)-windows'">
-    <ProjectReference Include="..\SMBLibrary.Win32\SMBLibrary.Win32.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' != '$(TargetFrameworkBase)-windows'">

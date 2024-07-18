@@ -13,53 +13,35 @@ namespace SMBLibrary
     /// </summary>
     public struct SetFileTime
     {
-        public bool MustNotChange;
+        private long m_value;
         private DateTime? m_time;
 
-        public SetFileTime(bool mustNotChange)
+        public SetFileTime(long value)
         {
-            MustNotChange = mustNotChange;
+            m_value = value;
             m_time = null;
         }
 
         public SetFileTime(DateTime? time)
         {
-            MustNotChange = false;
+            m_value = 0;
             m_time = time;
         }
 
         public long ToFileTimeUtc()
         {
-            if (MustNotChange)
-            {
-                return -1;
-            }
-            else if (!m_time.HasValue)
-            {
-                return 0;
-            }
-            else
-            {
-                return Time.Value.ToFileTimeUtc();
-            }
+            return m_time?.ToFileTimeUtc() ?? m_value;
         }
 
         public DateTime? Time
         {
             get
             {
-                if (MustNotChange)
-                {
-                    return null;
-                }
-                else
-                {
-                    return m_time;
-                }
+                return m_time;
             }
             set
             {
-                MustNotChange = false;
+                m_value = 0;
                 m_time = value;
             }
         }
@@ -71,17 +53,9 @@ namespace SMBLibrary
                 DateTime value = DateTime.FromFileTimeUtc(span);
                 return new SetFileTime(value);
             }
-            else if (span == 0)
-            {
-                return new SetFileTime(false);
-            }
-            else if (span == -1)
-            {
-                return new SetFileTime(true);
-            }
             else
             {
-                throw new System.IO.InvalidDataException("Set FILETIME cannot be less than -1");
+                return new SetFileTime(span);
             }
         }
 
